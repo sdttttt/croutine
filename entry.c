@@ -11,6 +11,19 @@
     // for (int i = 0; i < 10; i++)
     //     printf("OKOK");
 
+struct Configuration {
+    int maxThreadCount;
+} config;
+
+
+struct RoutineGroup {
+  HANDLE hThread;
+};
+
+struct Context {
+    struct RoutineGroup* group[4096];
+} context;
+
 /**
  * 0. 初始化环境, 限制线程数量之类的.
  * 1. 每个线程分配一个协程组.
@@ -19,5 +32,6 @@
  * */
 int main(void)
 {
+    config.maxThreadCount = 2;
     return 0;
 }

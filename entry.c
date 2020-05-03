@@ -11,24 +11,40 @@
     // for (int i = 0; i < 10; i++)
     //     printf("OKOK");
 
+/**
+ * Configuration is The runtime parameters of program.
+ * 
+ * @author sdttttt
+ **/
 struct Configuration {
     int maxThreadCount;
 } config;
 
-
+/**
+ * RoutineGroup is a Coroutines Group.
+ * 
+ * @author sdttttt
+ **/
 struct RoutineGroup {
   HANDLE hThread;
 };
 
+/**
+ * Context of The program.
+ * 
+ * @author
+ **/
 struct Context {
     struct RoutineGroup* group[4096];
 } context;
 
 /**
- * 0. 初始化环境, 限制线程数量之类的.
- * 1. 每个线程分配一个协程组.
- * 2. 加入一个任务, 自动分配协程组.
- * 3. 线程轮询执行协程组里所有的协程.
+ * 0. Initializer env.
+ * 1. Allocate a RoutineGroup for the thread. 
+ * 2. Automatically enter RoutineGroup when Add task.
+ * 3. Threads will execute each Routine. repeating this.
+ * 
+ * @author sdttttt
  * */
 int main(void)
 {

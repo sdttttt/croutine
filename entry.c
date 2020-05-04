@@ -2,21 +2,17 @@
 #include <stdlib.h>
 #include <windows.h>
 
-// DWORD WINAPI fn(LPVOID lpParamter)
-// {
-// }
+#define MAX_THREAD_COUNT 2
 
-// HANDLE hThread = CreateThread(NULL, 0, fn, NULL, 0, NULL);
-    // CloseHandle(hThread);
-    // for (int i = 0; i < 10; i++)
-    //     printf("OKOK");
+void init();
 
 /**
  * Configuration is The runtime parameters of program.
  * 
  * @author sdttttt
  **/
-struct Configuration {
+struct Configuration
+{
     int maxThreadCount;
 } config;
 
@@ -25,8 +21,9 @@ struct Configuration {
  * 
  * @author sdttttt
  **/
-struct RoutineGroup {
-  HANDLE hThread;
+struct RoutineGroup
+{
+    HANDLE hThread;
 };
 
 /**
@@ -34,8 +31,9 @@ struct RoutineGroup {
  * 
  * @author
  **/
-struct Context {
-    struct RoutineGroup* group[4096];
+struct Context
+{
+    struct RoutineGroup *group[4096];
 } context;
 
 /**
@@ -48,6 +46,17 @@ struct Context {
  * */
 int main(void)
 {
-    config.maxThreadCount = 2;
+    init();
+
     return 0;
+}
+
+/**
+ * Initializer env.
+ * 
+ * @author sdttttt
+ **/
+void init()
+{
+    config.maxThreadCount = MAX_THREAD_COUNT;
 }
